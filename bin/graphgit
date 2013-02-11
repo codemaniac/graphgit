@@ -1,0 +1,15 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import sys, logging
+
+try:
+  import argparse
+except ImportError:
+  print "argparse required but missing, try 'easy_install argparse' or 'pip install argparse'"
+  sys.exit(1)
+
+if __name__ == '__main__':
+  # TODO: command line execution
+  pass
+
