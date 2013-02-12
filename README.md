@@ -8,13 +8,23 @@ Development
 
 ## Installation
 
-	$ https://github.com/codemaniac/graphgit.git
+    $ https://github.com/codemaniac/graphgit.git
 	$ cd graphgit
 	$ python setup.py install
 
 ## Usage
 
+### Help
+
 	$ graphgit -h
+
+### Local Repository
+
+	$ graphgit /full/path/to/repository /path/to/output
+
+### Remote Repository
+
+	$ graphgit https://github.com/foo/bar.git /path/to/output
 
 ## Contributors
 
