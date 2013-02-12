@@ -14,7 +14,7 @@ Development
 
 ## Usage
 
-  $ graphgit -h
+	$ graphgit -h
 
 ## Contributors
 
