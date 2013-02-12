@@ -3,3 +3,7 @@
 
 envs/
 repos/
+outputs/
+GraphGit.egg-info/
+build/
+dist/

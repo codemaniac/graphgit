@@ -9,7 +9,24 @@ except ImportError:
   print "argparse required but missing, try 'easy_install argparse' or 'pip install argparse'"
   sys.exit(1)
 
-if __name__ == '__main__':
-  # TODO: command line execution
-  pass
+from graphgit import core
 
+if __name__ == '__main__':
+  parser = argparse.ArgumentParser(prog="graphgit",
+            description = "Generates graphs out of git repositories")
+
+  parser.add_argument("repository", help="Git repository URL")
+  parser.add_argument("output", help="Output graph file location")
+  parser.add_argument("-v", "--verbose",
+                        action="store_true", help="Show verbose output")
+
+  args = parser.parse_args()
+
+  logging.basicConfig()
+  log = logging.getLogger("graphgit")
+  if args.verbose:
+    log.setLevel(logging.DEBUG)
+  else:
+    log.setLevel(logging.INFO)
+
+  core.graph_repo(repo_url=args.repository, output_loc=args.output)
