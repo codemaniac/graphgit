@@ -9,8 +9,8 @@ Development
 ## Installation
 
     $ https://github.com/codemaniac/graphgit.git
-	$ cd graphgit
-	$ python setup.py install
+    $ cd graphgit
+    $ python setup.py install
 
 ## Usage
 

@@ -18,6 +18,8 @@ if __name__ == '__main__':
   parser.add_argument("repository", help="Git remote repository URL or \
     local repository absoulute path")
   parser.add_argument("output", help="Output graph file location")
+  parser.add_argument("--gexf",
+                        action="store_true", help="Show verbose output")
   parser.add_argument("-v", "--verbose",
                         action="store_true", help="Show verbose output")
 
@@ -30,4 +32,7 @@ if __name__ == '__main__':
   else:
     log.setLevel(logging.INFO)
 
-  core.graph_repo(repo_url=args.repository, output_loc=args.output)
+  format = 'gexf' if args.gexf else 'graphml'
+
+  core.graph_repo(repo_url=args.repository,
+    output_loc=args.output, format=format)
