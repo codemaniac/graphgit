@@ -30,6 +30,10 @@ Development
 
 ashish.ap.rao@gmail.com
 
+## Credits
+
+* [Gephi](https://gephi.org/) - for the really awesome visualizations
+
 ## License
 
 Copyright (c) 2013, Ashish Prasad
