@@ -15,7 +15,8 @@ if __name__ == '__main__':
   parser = argparse.ArgumentParser(prog="graphgit",
             description = "Generates graphs out of git repositories")
 
-  parser.add_argument("repository", help="Git repository URL")
+  parser.add_argument("repository", help="Git remote repository URL or \
+    local repository absoulute path")
   parser.add_argument("output", help="Output graph file location")
   parser.add_argument("-v", "--verbose",
                         action="store_true", help="Show verbose output")

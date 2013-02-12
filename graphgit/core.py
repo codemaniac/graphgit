@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import sys
+import sys, os
 import logging
 import git
 import networkx as nx
@@ -18,11 +18,14 @@ def safe_str(obj):
 def graph_repo(repo_url, output_loc):  
   """ generates graphml for a git repository """
   log = logging.getLogger("graphgit")
+  local_repo = os.path.isabs(repo_url)
   # repo name
-  repo_name = repo_url[repo_url.rfind('/')+1:repo_url.rfind('.git')]
+  repo_name = repo_url[repo_url.rfind('/')+1:repo_url.rfind('.git')] \
+    if not local_repo else repo_url[repo_url.rfind('/')+1:]
   log.info ("Processing git repository: %s" % repo_name)
   # local repo clone location
-  repo_loc = '%s/%s' % (constants.REPO_DOWNLOAD_LOCATION, repo_name)  
+  repo_loc = '%s/%s' % (constants.REPO_DOWNLOAD_LOCATION, repo_name) \
+    if not local_repo else repo_url
   # initialize repo
   repo = None
   gitt = git.Git()
