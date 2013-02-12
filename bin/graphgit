@@ -19,7 +19,7 @@ if __name__ == '__main__':
     local repository absoulute path")
   parser.add_argument("output", help="Output graph file location")
   parser.add_argument("--gexf",
-                        action="store_true", help="Show verbose output")
+                        action="store_true", help="outputs to .gexf format")
   parser.add_argument("-v", "--verbose",
                         action="store_true", help="Show verbose output")
 
