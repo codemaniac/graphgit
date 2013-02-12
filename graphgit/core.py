@@ -6,13 +6,20 @@ import git
 import networkx as nx
 import constants
 
-def main(argv):  
-  # obtain git repo URL
-  repo_url = argv[1]  
+def safe_str(obj):
+  """ return the byte string representation of obj """
+  try:
+    return str(obj)
+  except UnicodeEncodeError:
+    # obj is unicode
+    return unicode(obj).encode('unicode_escape')
+
+def graph_repo(repo_url, output_loc):  
+  """ generates graphml for a git repository """
   # repo name
-  repo_name = repo_url[repo_url.rfind('/'):repo_url.rfind('.git')]
+  repo_name = repo_url[repo_url.rfind('/')+1:repo_url.rfind('.git')]
   # local repo clone location
-  repo_loc = '%s%s' % (constants.REPO_DOWNLOAD_LOCATION, repo_name)  
+  repo_loc = '%s/%s' % (constants.REPO_DOWNLOAD_LOCATION, repo_name)  
   # initialize repo
   repo = None
   gitt = git.Git()
@@ -33,9 +40,28 @@ def main(argv):
     sys.exit(1)
 
   # create a graph for the repo
-  G = nx.Graph()
-
-  print repo.branches
+  G = nx.DiGraph()
+  # root node
+  G.add_node(repo_name, type=constants.NODE_TYPE_VALS['REPOSITORY'])
+  # branches & commits
+  for branch in repo.branches:
+    G.add_node(branch, type=constants.NODE_TYPE_VALS['BRANCH'])
+    G.add_edge(repo_name, branch, label=constants.EDGE_LABEL_VALS['REPOSITORY_BRANCH'])
+    for commit in repo.iter_commits(branch):
+      author = safe_str(commit.author)
+      ts = commit.committed_date
+      message = safe_str(commit.message.strip())      
+      sha = str(commit)
+      G.add_node(author, type=constants.NODE_TYPE_VALS['PERSON'])
+      G.add_node(sha, ts=ts, message=message, type=constants.NODE_TYPE_VALS['COMMIT'])
+      G.add_edge(author, sha, label=constants.EDGE_LABEL_VALS['PERSON_COMMIT'])
+      G.add_edge(branch, sha, label=constants.EDGE_LABEL_VALS['BRANCH_COMMIT'])
+  
+  # save graphml
+  output_file_name = '%s.graphml' % repo_name
+  output_file_loc = '%s/%s' % (output_loc, output_file_name)
+  output_file = open(output_file_loc,'w')
+  nx.write_graphml(G, output_file)
 
 if __name__ == "__main__":
-  main(sys.argv)
+  graph_repo(sys.argv[1], sys.argv[2])

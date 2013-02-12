@@ -2,6 +2,10 @@
 
 Git repository graph generator
 
+## Status
+
+Development
+
 ## Installation
 
 	$ https://github.com/codemaniac/graphgit.git
