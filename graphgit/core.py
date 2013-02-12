@@ -35,7 +35,7 @@ def graph_repo(repo_url, output_loc):
   except git.exc.NoSuchPathError:
     # local repo doesn't exist. clone
     try:
-      log.info( "Cloning repository... please wait !" )
+      log.info( "Cloning repository... this might take some time, please wait !" )
       gitt.clone(repo_url, repo_loc)
       log.info( "Git clone completed..." )  
       repo = git.Repo(repo_loc, odbt=git.GitCmdObjectDB)

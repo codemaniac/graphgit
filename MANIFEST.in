@@ -2,4 +2,5 @@ include AUTHORS
 include LICENSE
 include TODO
 include ez_setup.py
+recursive-include graphgit *
 

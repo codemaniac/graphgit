@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-REPO_DOWNLOAD_LOCATION = '../repos'
+REPO_DOWNLOAD_LOCATION = '/tmp/graphgit/repos'
 
 # node types
 NODE_TYPE_VALS = dict(REPOSITORY='repository',
