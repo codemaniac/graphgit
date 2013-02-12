@@ -16,15 +16,15 @@ def safe_str(obj):
     return unicode(obj).encode('unicode_escape')
 
 def graph_repo(repo_url, output_loc, format='graphml'):  
-  """ generates graphml for a git repository """
+  """ generates a graph for a git repository """
   log = logging.getLogger("graphgit")
   # repo type
   local_repo = os.path.isabs(repo_url)
   # repo name
   repo_name = repo_url[repo_url.rfind('/')+1:repo_url.rfind('.git')] \
-    if not local_repo else repo_url[repo_url.rfind('/')+1:]
+    if not local_repo else repo_url[repo_url.rfind(os.sep)+1:]
   log.info ("Processing git repository: %s" % repo_name)
-  # local repo clone location
+  # repo location
   repo_loc = os.path.join(constants.REPO_DOWNLOAD_LOCATION, repo_name) \
     if not local_repo else repo_url
   # initialize repo
@@ -82,7 +82,7 @@ def graph_repo(repo_url, output_loc, format='graphml'):
 
   log.info( "Graph built ! saving..." )
 
-  # save graphml
+  # save graph
   output_file_name = '%s.%s' % (repo_name, format)
   output_file_loc = os.path.join(output_loc, output_file_name)
   if format == 'graphml':
