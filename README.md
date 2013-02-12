@@ -14,6 +14,8 @@ Development
 
 ## Usage
 
+  $ graphgit -h
+
 ## Contributors
 
 ashish.ap.rao@gmail.com
