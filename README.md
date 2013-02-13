@@ -4,7 +4,7 @@ Git repository graph generator
 
 ## Status
 
-Development
+Beta
 
 ## Installation
 
