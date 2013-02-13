@@ -8,9 +8,21 @@ Development
 
 ## Installation
 
+### Source
+
     $ https://github.com/codemaniac/graphgit.git
     $ cd graphgit
     $ python setup.py install
+
+### PyPI
+
+#### easy_install
+
+    $ easy_install GraphGit
+
+#### pip
+
+    $ pip install GraphGit
 
 ## Usage
 
