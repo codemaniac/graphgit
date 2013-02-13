@@ -10,7 +10,7 @@ Beta
 
 ### Source
 
-    $ https://github.com/codemaniac/graphgit.git
+    $ git clone https://github.com/codemaniac/graphgit.git
     $ cd graphgit
     $ python setup.py install
 
